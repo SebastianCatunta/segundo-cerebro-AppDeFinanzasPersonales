@@ -13,6 +13,7 @@ El pipeline SDD con Claude Code: subagentes, skills, hooks, gates, scripts y las
 
 ## (raíz)
 
+- [[MCP de Neon]]
 - [[Pipeline SDD con agentes]]
 - [[Scripts SDD (tools-sdd)]]
 
@@ -25,8 +26,10 @@ El pipeline SDD con Claude Code: subagentes, skills, hooks, gates, scripts y las
 ## Configuración
 
 - [[Config - .claude settings.json]]
+- [[Config - .mcp.json]]
 - [[Config - branch-groups.json]]
 - [[Config - hook pre-push]]
+- [[Config - neon.mjs]]
 
 ## Ejecuciones › TASK-271
 
@@ -66,6 +69,7 @@ El pipeline SDD con Claude Code: subagentes, skills, hooks, gates, scripts y las
 ## README
 
 - [[README - Desarrollo guiado por especificaciones (SDD) con agentes]]
+- [[README - MCP de Neon (Claude Code)]]
 
 ## Skills
 

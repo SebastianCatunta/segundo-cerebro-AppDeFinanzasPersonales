@@ -199,6 +199,7 @@ const README_PLACE = {
   'Despliegues': F.devops, 'Equipo': F.inicio, 'Stack': F.arq, 'Estructura': F.arq,
   'Cómo correrlo en local': F.devops, 'Pruebas y calidad': F.test, 'Integración y despliegue continuos': F.devops,
   'Desarrollo guiado por especificaciones (SDD) con agentes': F.ia, 'Secretos y variables': F.devops,
+  'MCP de Neon (Claude Code)': F.ia,
   'Puesta en marcha del despliegue (una sola vez)': F.devops, 'Estado del proyecto': F.inicio, 'Documentación': F.inicio,
 };
 splitDoc({

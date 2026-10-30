@@ -38,6 +38,15 @@ actualizado: "2026-10-30"
 | `VERCEL_TOKEN`, `VERCEL_ORG_ID`, `VERCEL_PROJECT_ID` | Secretos | `vercel pull/build/deploy` |
 | `WEB_URL`, `API_URL` | Variables | Pruebas de humo |
 
+## MCP de Neon (solo desarrollo local, nunca en producción)
+
+| Variable | Para qué |
+|---|---|
+| `NEON_API_KEY` | API key de Neon (Console → Settings → API keys). Va **solo en tu `.env` local**, comentada y vacía en `.env.example`. Es un secreto: se pasa por un canal privado |
+| `NEON_MCP_READONLY` | Opcional. `true` por defecto (solo lectura); `false` permite que el MCP escriba en la base |
+
+Ver [[MCP de Neon]] · [[Config - neon.mjs]].
+
 ## Pruebas (local)
 
 | Variable | Para qué |

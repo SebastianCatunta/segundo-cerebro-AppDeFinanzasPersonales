@@ -52,6 +52,10 @@ flowchart LR
 
 Ramas de grupo ([[Config - branch-groups.json]], [[Protocolo 5. Ramas, commits y PR]]) y asignaciones por persona ([[Asignaciones de las Fases 7 a 25]], [[Asignaciones de las Fases 14 a 25]]). Resumen en [[README - Desarrollo guiado por especificaciones (SDD) con agentes]].
 
+## Herramientas MCP
+
+Además del pipeline, el proyecto trae un servidor MCP para que Claude Code consulte la base de datos en desarrollo: [[MCP de Neon]] ([[Config - .mcp.json]], [[Config - neon.mjs]]).
+
 ---
 ## 🔗 Relacionado
 

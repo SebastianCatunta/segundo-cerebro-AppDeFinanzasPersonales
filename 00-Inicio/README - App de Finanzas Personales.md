@@ -27,6 +27,7 @@ Aplicación web para que una persona en Bolivia lleve sus finanzas personales en
 - [[README - Integración y despliegue continuos|Integración y despliegue continuos]]
 - [[README - Desarrollo guiado por especificaciones (SDD) con agentes|Desarrollo guiado por especificaciones (SDD) con agentes]]
 - [[README - Secretos y variables|Secretos y variables]]
+- [[README - MCP de Neon (Claude Code)|MCP de Neon (Claude Code)]]
 - [[README - Puesta en marcha del despliegue (una sola vez)|Puesta en marcha del despliegue (una sola vez)]]
 - [[README - Estado del proyecto|Estado del proyecto]]
 - [[README - Documentación|Documentación]]

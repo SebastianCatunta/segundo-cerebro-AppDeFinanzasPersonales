@@ -7,7 +7,7 @@ tags:
 actualizado: "2026-10-30"
 ---
 
-↑ [[README - App de Finanzas Personales]] · ← [[README - Secretos y variables]] · → [[README - Estado del proyecto]]
+↑ [[README - App de Finanzas Personales]] · ← [[README - MCP de Neon (Claude Code)]] · → [[README - Estado del proyecto]]
 
 ## Puesta en marcha del despliegue (una sola vez)
 
