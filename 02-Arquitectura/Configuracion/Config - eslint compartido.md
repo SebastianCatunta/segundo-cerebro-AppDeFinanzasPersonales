@@ -1,0 +1,109 @@
+---
+tipo: "configuracion"
+fuente: "packages/config/eslint.config.js"
+tags:
+  - "config"
+actualizado: "2026-10-30"
+---
+
+# `packages/config/eslint.config.js`
+
+Configuración ESLint compartida (`createConfig`): typescript-eslint con información de tipos, prohíbe pruebas `.only`/`.skip` (todo test corre en CI, constitución §5) y prohíbe `parseFloat`/punto flotante en `packages/domain`, `packages/contracts` y `apps/api/src` (constitución §3). La web añade `eslint-plugin-i18next` con `no-literal-string` (RNF-07).
+
+## Contenido
+
+```js
+import { resolve } from 'node:path';
+import js from '@eslint/js';
+import { defineConfig, globalIgnores } from 'eslint/config';
+import tseslint from 'typescript-eslint';
+
+const TEST_APIS = '/^(describe|it|test|suite|bench)$/';
+const FOCUS_OR_SKIP = '/^(only|skip)$/';
+const FOCUS_OR_SKIP_MESSAGE =
+  'Focused or skipped tests are not allowed: every test must run in CI (constitution §5).';
+
+const PARSE_FLOAT_MESSAGE =
+  'Money and rates must use exact decimals (decimal.js), never floating point (constitution §3).';
+
+/** Node globals available to plain JS tooling config files. */
+const NODE_GLOBALS = Object.fromEntries(
+  ['process', 'console', 'Buffer', 'URL', 'URLSearchParams', 'setTimeout', 'clearTimeout'].map(
+    (name) => [name, 'readonly'],
+  ),
+);
+
+/** Folders whose code handles money and rates: floating point parsing is forbidden there. */
+const MONEY_PATHS = ['packages/domain/**', 'packages/contracts/**', 'apps/api/src/**'];
+
+/**
+ * Shared flat config: typescript-eslint with type information, plus the project rules.
+ * `tsconfigRootDir` bounds the tsconfig.json lookup: it must contain the tsconfig of the linted files.
+ *
+ * @param {{ tsconfigRootDir: string }} options
+ */
+export function createConfig({ tsconfigRootDir }) {
+  return defineConfig(
+    globalIgnores(['**/dist/', '**/coverage/', '**/playwright-report/', '**/test-results/']),
+    js.configs.recommended,
+    tseslint.configs.recommendedTypeChecked,
+    {
+      languageOptions: {
+        parserOptions: {
+          projectService: true,
+          tsconfigRootDir,
+        },
+      },
+      rules: {
+        'no-restricted-syntax': [
+          'error',
+          {
+            selector: `MemberExpression[object.name=${TEST_APIS}][property.name=${FOCUS_OR_SKIP}]`,
+            message: FOCUS_OR_SKIP_MESSAGE,
+          },
+          {
+            selector: `MemberExpression[object.object.name=${TEST_APIS}][property.name=${FOCUS_OR_SKIP}]`,
+            message: FOCUS_OR_SKIP_MESSAGE,
+          },
+        ],
+      },
+    },
+    {
+      // Plain JS is only tooling config (eslint, commitlint, dependency-cruiser, postcss...): it is
+      // linted without type information, so it does not have to be listed in any tsconfig.json.
+      files: ['**/*.js', '**/*.cjs', '**/*.mjs'],
+      extends: [tseslint.configs.disableTypeChecked],
+      languageOptions: { globals: NODE_GLOBALS },
+    },
+    {
+      files: ['**/*.cjs'],
+      languageOptions: {
+        sourceType: 'commonjs',
+        globals: { __dirname: 'readonly', __filename: 'readonly' },
+      },
+      rules: { '@typescript-eslint/no-require-imports': 'off' },
+    },
+    {
+      files: MONEY_PATHS,
+      rules: {
+        'no-restricted-globals': ['error', { name: 'parseFloat', message: PARSE_FLOAT_MESSAGE }],
+        'no-restricted-properties': [
+          'error',
+          { object: 'Number', property: 'parseFloat', message: PARSE_FLOAT_MESSAGE },
+          { object: 'globalThis', property: 'parseFloat', message: PARSE_FLOAT_MESSAGE },
+        ],
+      },
+    },
+  );
+}
+
+// Used by ESLint for the files of this package; the type information comes from the root tsconfig.json.
+export default createConfig({ tsconfigRootDir: resolve(import.meta.dirname, '..', '..') });
+```
+
+---
+## 🔗 Relacionado
+
+- **Requerimientos no funcionales:** [[Spec 3.2 Compatibilidad y accesibilidad]]
+- **Spec / Plan / Constitución:** [[Constitución 3. Datos y dinero]] · [[Constitución 5. Calidad]]
+

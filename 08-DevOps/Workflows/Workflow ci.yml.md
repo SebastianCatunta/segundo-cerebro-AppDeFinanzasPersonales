@@ -1,0 +1,127 @@
+---
+tipo: "devops"
+fuente: ".github/workflows/ci.yml"
+tags:
+  - "devops/ci"
+actualizado: "2026-10-30"
+---
+
+# Workflow `ci.yml`
+
+Corre en cada push y PR (y es reutilizable con `workflow_call`). Instala con caché y genera el cliente Prisma, corre commitlint de los commits del PR, lint, typecheck, dependency-cruiser, migraciones sobre Postgres 16, pruebas unitarias y HTTP, integración y el build de `api` y `web`.
+
+Ver también [[Flujo - Despliegue a producción]] y [[Plan 1.5 Integración y despliegue continuos (ADR-20)]].
+
+## Pasos
+
+1. Checkout
+1. Setup pnpm
+1. Setup Node
+1. 1. Install dependencies and generate the Prisma client
+1. 2. Commitlint (pull request commits)
+1. 3. Lint
+1. 4. Typecheck
+1. 5. Dependency rules (dependency-cruiser)
+1. 6. Apply migrations (Postgres 16)
+1. 7. Unit and HTTP tests
+1. 8. Integration tests (Postgres 16)
+1. 9. Build api and web
+
+> [!example]- Archivo completo .github/workflows/ci.yml
+> ```yaml
+> name: ci
+> 
+> on:
+>   push:
+>     branches: ['**']
+>   pull_request:
+>     branches: [develop, qa, main]
+>   workflow_call:
+> 
+> permissions:
+>   contents: read
+> 
+> concurrency:
+>   group: ci-${{ github.workflow }}-${{ github.ref }}
+>   cancel-in-progress: ${{ github.event_name != 'workflow_call' }}
+> 
+> jobs:
+>   ci:
+>     name: ci
+>     runs-on: ubuntu-latest
+>     timeout-minutes: 30
+>     services:
+>       postgres:
+>         image: postgres:16
+>         env:
+>           POSTGRES_USER: ci
+>           POSTGRES_PASSWORD: ci-ephemeral
+>           POSTGRES_DB: finanzas_test
+>         ports:
+>           - 5432:5432
+>         options: >-
+>           --health-cmd "pg_isready -U ci -d finanzas_test"
+>           --health-interval 5s
+>           --health-timeout 5s
+>           --health-retries 10
+>     env:
+>       DATABASE_URL: postgresql://ci:ci-ephemeral@localhost:5432/finanzas_test
+>       DATABASE_URL_DIRECT: postgresql://ci:ci-ephemeral@localhost:5432/finanzas_test
+>       TEST_DATABASE_URL: postgresql://ci:ci-ephemeral@localhost:5432/finanzas_test
+>       INTEGRATIONS: fake
+>     steps:
+>       - name: Checkout
+>         uses: actions/checkout@v4
+>         with:
+>           fetch-depth: 0
+> 
+>       - name: Setup pnpm
+>         uses: pnpm/action-setup@v4
+> 
+>       - name: Setup Node
+>         uses: actions/setup-node@v4
+>         with:
+>           node-version-file: .nvmrc
+>           cache: pnpm
+> 
+>       # Lint and typecheck read the Prisma client types, so the client is generated right after install.
+>       - name: 1. Install dependencies and generate the Prisma client
+>         run: |
+>           pnpm install --frozen-lockfile
+>           pnpm --filter @finanzas/db generate
+> 
+>       - name: 2. Commitlint (pull request commits)
+>         if: github.event_name == 'pull_request'
+>         run: >-
+>           pnpm exec commitlint
+>           --from ${{ github.event.pull_request.base.sha }}
+>           --to ${{ github.event.pull_request.head.sha }}
+>           --verbose
+> 
+>       - name: 3. Lint
+>         run: pnpm lint
+> 
+>       - name: 4. Typecheck
+>         run: pnpm typecheck
+> 
+>       - name: 5. Dependency rules (dependency-cruiser)
+>         run: pnpm depcruise
+> 
+>       - name: 6. Apply migrations (Postgres 16)
+>         run: pnpm --filter @finanzas/db migrate:deploy
+> 
+>       - name: 7. Unit and HTTP tests
+>         run: pnpm test:unit
+> 
+>       - name: 8. Integration tests (Postgres 16)
+>         run: pnpm test:integration
+> 
+>       - name: 9. Build api and web
+>         run: pnpm build
+> ```
+
+---
+## 🔗 Relacionado
+
+- **Decisiones (ADR):** [[ADR-20 - CI-CD con GitHub Actions]]
+

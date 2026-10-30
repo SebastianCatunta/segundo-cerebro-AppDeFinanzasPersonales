@@ -1,0 +1,44 @@
+/* Colores por categoría del segundo cerebro (generado). */
+.nav-folder-title[data-path^="00-Inicio"], .nav-file-title[data-path^="00-Inicio"] { color: #F5C542; }
+.nav-folder-title[data-path="00-Inicio"] { font-weight: 700; }
+.nav-folder-title[data-path="00-Inicio"] + .nav-folder-children { border-left: 2px solid #F5C542; }
+.nav-folder-title[data-path^="01-Especificacion"], .nav-file-title[data-path^="01-Especificacion"] { color: #4A90E2; }
+.nav-folder-title[data-path="01-Especificacion"] { font-weight: 700; }
+.nav-folder-title[data-path="01-Especificacion"] + .nav-folder-children { border-left: 2px solid #4A90E2; }
+.nav-folder-title[data-path^="02-Arquitectura"], .nav-file-title[data-path^="02-Arquitectura"] { color: #9B59B6; }
+.nav-folder-title[data-path="02-Arquitectura"] { font-weight: 700; }
+.nav-folder-title[data-path="02-Arquitectura"] + .nav-folder-children { border-left: 2px solid #9B59B6; }
+.nav-folder-title[data-path^="03-Backend"], .nav-file-title[data-path^="03-Backend"] { color: #27AE60; }
+.nav-folder-title[data-path="03-Backend"] { font-weight: 700; }
+.nav-folder-title[data-path="03-Backend"] + .nav-folder-children { border-left: 2px solid #27AE60; }
+.nav-folder-title[data-path^="04-Frontend"], .nav-file-title[data-path^="04-Frontend"] { color: #E67E22; }
+.nav-folder-title[data-path="04-Frontend"] { font-weight: 700; }
+.nav-folder-title[data-path="04-Frontend"] + .nav-folder-children { border-left: 2px solid #E67E22; }
+.nav-folder-title[data-path^="05-Datos"], .nav-file-title[data-path^="05-Datos"] { color: #16A085; }
+.nav-folder-title[data-path="05-Datos"] { font-weight: 700; }
+.nav-folder-title[data-path="05-Datos"] + .nav-folder-children { border-left: 2px solid #16A085; }
+.nav-folder-title[data-path^="06-Features"], .nav-file-title[data-path^="06-Features"] { color: #E74C3C; }
+.nav-folder-title[data-path="06-Features"] { font-weight: 700; }
+.nav-folder-title[data-path="06-Features"] + .nav-folder-children { border-left: 2px solid #E74C3C; }
+.nav-folder-title[data-path^="07-Testing-QA"], .nav-file-title[data-path^="07-Testing-QA"] { color: #FF6FB5; }
+.nav-folder-title[data-path="07-Testing-QA"] { font-weight: 700; }
+.nav-folder-title[data-path="07-Testing-QA"] + .nav-folder-children { border-left: 2px solid #FF6FB5; }
+.nav-folder-title[data-path^="08-DevOps"], .nav-file-title[data-path^="08-DevOps"] { color: #A0522D; }
+.nav-folder-title[data-path="08-DevOps"] { font-weight: 700; }
+.nav-folder-title[data-path="08-DevOps"] + .nav-folder-children { border-left: 2px solid #A0522D; }
+.nav-folder-title[data-path^="09-Proceso-IA"], .nav-file-title[data-path^="09-Proceso-IA"] { color: #A3E635; }
+.nav-folder-title[data-path="09-Proceso-IA"] { font-weight: 700; }
+.nav-folder-title[data-path="09-Proceso-IA"] + .nav-folder-children { border-left: 2px solid #A3E635; }
+a.tag[href^="#modulo"] { background-color: #E74C3C22; color: #E74C3C; border: 1px solid #E74C3C55; }
+a.tag[href^="#sdd"] { background-color: #4A90E222; color: #4A90E2; border: 1px solid #4A90E255; }
+a.tag[href^="#arquitectura"] { background-color: #9B59B622; color: #9B59B6; border: 1px solid #9B59B655; }
+a.tag[href^="#backend"] { background-color: #27AE6022; color: #27AE60; border: 1px solid #27AE6055; }
+a.tag[href^="#frontend"] { background-color: #E67E2222; color: #E67E22; border: 1px solid #E67E2255; }
+a.tag[href^="#datos"] { background-color: #16A08522; color: #16A085; border: 1px solid #16A08555; }
+a.tag[href^="#testing"] { background-color: #FF6FB522; color: #FF6FB5; border: 1px solid #FF6FB555; }
+a.tag[href^="#qa"] { background-color: #FF6FB522; color: #FF6FB5; border: 1px solid #FF6FB555; }
+a.tag[href^="#devops"] { background-color: #A0522D22; color: #A0522D; border: 1px solid #A0522D55; }
+a.tag[href^="#ia"] { background-color: #A3E63522; color: #A3E635; border: 1px solid #A3E63555; }
+a.tag[href^="#paquete"] { background-color: #9B59B622; color: #9B59B6; border: 1px solid #9B59B655; }
+a.tag[href^="#feature"] { background-color: #E74C3C22; color: #E74C3C; border: 1px solid #E74C3C55; }
+a.tag[href^="#moc"] { background-color: #F5C54222; color: #F5C542; border: 1px solid #F5C54255; }

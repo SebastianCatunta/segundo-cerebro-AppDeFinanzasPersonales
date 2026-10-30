@@ -1,0 +1,229 @@
+---
+tipo: "devops"
+fuente: ".github/workflows/qa-e2e.yml"
+tags:
+  - "devops/ci"
+actualizado: "2026-10-30"
+---
+
+# Workflow `qa-e2e.yml`
+
+Corre en cada push a `qa` y en PR hacia `main`. Levanta un entorno efímero dentro del runner (Postgres como service, migraciones, seed de usuarios y 5.000 movimientos, API con integraciones falsas y web en `vite preview`) y corre Playwright en 3 navegadores × 2 anchos, axe y rendimiento, más el subconjunto `@release-1.0`.
+
+Ver también [[Flujo - Despliegue a producción]] y [[Plan 1.5 Integración y despliegue continuos (ADR-20)]].
+
+## Pasos
+
+1. Checkout
+1. Setup pnpm
+1. Setup Node
+1. 1. Install dependencies and generate the Prisma client
+1. 2. Apply migrations (Postgres 16)
+1. 3. Seed the test users, 5.000 movements and fixed rates
+1. 4. Install the Playwright browser (${{ matrix.browser }})
+1. 5. Playwright (${{ matrix.project }}): E2E, axe and performance
+1. Publish the report, traces and videos
+1. Checkout
+1. Setup pnpm
+1. Setup Node
+1. 1. Install dependencies and generate the Prisma client
+1. 2. Apply migrations (Postgres 16)
+1. 3. Seed the test users, 5.000 movements and fixed rates
+1. 4. Install the Playwright browser (chromium)
+1. 5. Playwright (${{ matrix.project }}): subset @release-1.0
+1. Publish the report, traces and videos
+1. Require every E2E job to pass
+
+> [!example]- Archivo completo .github/workflows/qa-e2e.yml
+> ```yaml
+> # Ephemeral QA environment (plan §1.5, ADR-20): Postgres as a service, migrations, seed:e2e, the API
+> # with INTEGRATIONS=fake and the compiled web in `vite preview`, all inside the runner.
+> # Playwright launches the API and the web itself (e2e/playwright.config.ts), so each matrix job gets
+> # its own isolated environment. Nothing is deployed from here.
+> name: qa-e2e
+> 
+> on:
+>   push:
+>     branches: [qa]
+>   pull_request:
+>     branches: [main]
+> 
+> permissions:
+>   contents: read
+> 
+> concurrency:
+>   group: qa-e2e-${{ github.ref }}
+>   cancel-in-progress: true
+> 
+> env:
+>   DATABASE_URL: postgresql://qa:qa-ephemeral@localhost:5432/finanzas_test
+>   DATABASE_URL_DIRECT: postgresql://qa:qa-ephemeral@localhost:5432/finanzas_test
+>   TEST_DATABASE_URL: postgresql://qa:qa-ephemeral@localhost:5432/finanzas_test
+>   INTEGRATIONS: fake
+> 
+> jobs:
+>   # The full suite (E2E, axe and performance, RNF-01 to RNF-03) on Chromium, WebKit and Firefox at
+>   # 360 px and 1280 px. The six projects of the Playwright config run in parallel, one job each.
+>   e2e:
+>     name: e2e (${{ matrix.project }})
+>     runs-on: ubuntu-latest
+>     timeout-minutes: 30
+>     strategy:
+>       fail-fast: false
+>       matrix:
+>         include:
+>           - { project: chromium-360, browser: chromium }
+>           - { project: chromium-1280, browser: chromium }
+>           - { project: webkit-360, browser: webkit }
+>           - { project: webkit-1280, browser: webkit }
+>           - { project: firefox-360, browser: firefox }
+>           - { project: firefox-1280, browser: firefox }
+>     services:
+>       postgres:
+>         image: postgres:16
+>         env:
+>           POSTGRES_USER: qa
+>           POSTGRES_PASSWORD: qa-ephemeral
+>           POSTGRES_DB: finanzas_test
+>         ports:
+>           - 5432:5432
+>         options: >-
+>           --health-cmd "pg_isready -U qa -d finanzas_test"
+>           --health-interval 5s
+>           --health-timeout 5s
+>           --health-retries 10
+>     steps:
+>       - name: Checkout
+>         uses: actions/checkout@v4
+> 
+>       - name: Setup pnpm
+>         uses: pnpm/action-setup@v4
+> 
+>       - name: Setup Node
+>         uses: actions/setup-node@v4
+>         with:
+>           node-version-file: .nvmrc
+>           cache: pnpm
+> 
+>       - name: 1. Install dependencies and generate the Prisma client
+>         run: |
+>           pnpm install --frozen-lockfile
+>           pnpm --filter @finanzas/db generate
+> 
+>       - name: 2. Apply migrations (Postgres 16)
+>         run: pnpm --filter @finanzas/db migrate:deploy
+> 
+>       - name: 3. Seed the test users, 5.000 movements and fixed rates
+>         run: pnpm --filter @finanzas/db seed:e2e
+> 
+>       - name: 4. Install the Playwright browser (${{ matrix.browser }})
+>         run: pnpm --filter e2e exec playwright install --with-deps ${{ matrix.browser }}
+> 
+>       # Playwright starts the API (INTEGRATIONS=fake) and builds and serves the web with `vite preview`.
+>       - name: '5. Playwright (${{ matrix.project }}): E2E, axe and performance'
+>         run: pnpm --filter e2e exec playwright test --project=${{ matrix.project }}
+> 
+>       - name: Publish the report, traces and videos
+>         if: ${{ !cancelled() }}
+>         uses: actions/upload-artifact@v4
+>         with:
+>           name: playwright-${{ matrix.project }}
+>           path: |
+>             e2e/playwright-report/
+>             e2e/test-results/
+>           if-no-files-found: ignore
+>           retention-days: 14
+> 
+>   # The cases tagged @release-1.0 need the API running with RELEASE=1.0, so they run in their own
+>   # environment (`e2e:release-1.0`, plan §5.1).
+>   release-1-0:
+>     name: release 1.0 subset (${{ matrix.project }})
+>     runs-on: ubuntu-latest
+>     timeout-minutes: 30
+>     strategy:
+>       fail-fast: false
+>       matrix:
+>         project: [chromium-360, chromium-1280]
+>     services:
+>       postgres:
+>         image: postgres:16
+>         env:
+>           POSTGRES_USER: qa
+>           POSTGRES_PASSWORD: qa-ephemeral
+>           POSTGRES_DB: finanzas_test
+>         ports:
+>           - 5432:5432
+>         options: >-
+>           --health-cmd "pg_isready -U qa -d finanzas_test"
+>           --health-interval 5s
+>           --health-timeout 5s
+>           --health-retries 10
+>     steps:
+>       - name: Checkout
+>         uses: actions/checkout@v4
+> 
+>       - name: Setup pnpm
+>         uses: pnpm/action-setup@v4
+> 
+>       - name: Setup Node
+>         uses: actions/setup-node@v4
+>         with:
+>           node-version-file: .nvmrc
+>           cache: pnpm
+> 
+>       - name: 1. Install dependencies and generate the Prisma client
+>         run: |
+>           pnpm install --frozen-lockfile
+>           pnpm --filter @finanzas/db generate
+> 
+>       - name: 2. Apply migrations (Postgres 16)
+>         run: pnpm --filter @finanzas/db migrate:deploy
+> 
+>       - name: 3. Seed the test users, 5.000 movements and fixed rates
+>         run: pnpm --filter @finanzas/db seed:e2e
+> 
+>       - name: 4. Install the Playwright browser (chromium)
+>         run: pnpm --filter e2e exec playwright install --with-deps chromium
+> 
+>       - name: '5. Playwright (${{ matrix.project }}): subset @release-1.0'
+>         run: pnpm --filter e2e e2e:release-1.0 --project=${{ matrix.project }}
+> 
+>       - name: Publish the report, traces and videos
+>         if: ${{ !cancelled() }}
+>         uses: actions/upload-artifact@v4
+>         with:
+>           name: playwright-release-1-0-${{ matrix.project }}
+>           path: |
+>             e2e/playwright-report/
+>             e2e/test-results/
+>           if-no-files-found: ignore
+>           retention-days: 14
+> 
+>   # The single check that branch protection requires on `main` (name: qa-e2e).
+>   qa-e2e:
+>     name: qa-e2e
+>     needs: [e2e, release-1-0]
+>     if: ${{ always() }}
+>     runs-on: ubuntu-latest
+>     timeout-minutes: 5
+>     steps:
+>       - name: Require every E2E job to pass
+>         env:
+>           RESULTS: ${{ join(needs.*.result, ' ') }}
+>         run: |
+>           echo "Job results: $RESULTS"
+>           for result in $RESULTS; do
+>             if [ "$result" != "success" ]; then
+>               echo "qa-e2e failed: at least one job did not succeed."
+>               exit 1
+>             fi
+>           done
+> ```
+
+---
+## 🔗 Relacionado
+
+- **Decisiones (ADR):** [[ADR-20 - CI-CD con GitHub Actions]]
+- **Requerimientos no funcionales:** [[Spec 3.1 Tiempos límite]]
+- **Spec / Plan / Constitución:** [[Plan 5.1 Estrategia]]
+

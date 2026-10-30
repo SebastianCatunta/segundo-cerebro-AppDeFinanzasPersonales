@@ -1,0 +1,349 @@
+{
+  "nodes": [
+    {
+      "id": "inicio",
+      "type": "file",
+      "file": "00-Inicio/Inicio.md",
+      "x": -200,
+      "y": -150,
+      "width": 400,
+      "height": 300,
+      "color": "#F5C542"
+    },
+    {
+      "id": "moc0",
+      "type": "file",
+      "file": "00-Inicio/MOC Especificación.md",
+      "x": -160,
+      "y": -660,
+      "width": 320,
+      "height": 220,
+      "color": "#4A90E2"
+    },
+    {
+      "id": "moc1",
+      "type": "file",
+      "file": "00-Inicio/MOC Arquitectura.md",
+      "x": 322,
+      "y": -531,
+      "width": 320,
+      "height": 220,
+      "color": "#9B59B6"
+    },
+    {
+      "id": "moc2",
+      "type": "file",
+      "file": "00-Inicio/MOC Backend.md",
+      "x": 579,
+      "y": -206,
+      "width": 320,
+      "height": 220,
+      "color": "#27AE60"
+    },
+    {
+      "id": "moc3",
+      "type": "file",
+      "file": "00-Inicio/MOC Frontend.md",
+      "x": 490,
+      "y": 165,
+      "width": 320,
+      "height": 220,
+      "color": "#E67E22"
+    },
+    {
+      "id": "moc4",
+      "type": "file",
+      "file": "00-Inicio/MOC Datos.md",
+      "x": 97,
+      "y": 407,
+      "width": 320,
+      "height": 220,
+      "color": "#16A085"
+    },
+    {
+      "id": "moc5",
+      "type": "file",
+      "file": "00-Inicio/MOC Features.md",
+      "x": -417,
+      "y": 407,
+      "width": 320,
+      "height": 220,
+      "color": "#E74C3C"
+    },
+    {
+      "id": "moc6",
+      "type": "file",
+      "file": "00-Inicio/MOC Testing.md",
+      "x": -810,
+      "y": 165,
+      "width": 320,
+      "height": 220,
+      "color": "#FF6FB5"
+    },
+    {
+      "id": "moc7",
+      "type": "file",
+      "file": "00-Inicio/MOC DevOps.md",
+      "x": -899,
+      "y": -206,
+      "width": 320,
+      "height": 220,
+      "color": "#A0522D"
+    },
+    {
+      "id": "moc8",
+      "type": "file",
+      "file": "00-Inicio/MOC Proceso IA.md",
+      "x": -642,
+      "y": -531,
+      "width": 320,
+      "height": 220,
+      "color": "#A3E635"
+    },
+    {
+      "id": "gV1.0",
+      "type": "group",
+      "label": "Entrega V1.0",
+      "x": -1100,
+      "y": 800,
+      "width": 620,
+      "height": 590,
+      "color": "#E74C3C"
+    },
+    {
+      "id": "mM1",
+      "type": "file",
+      "file": "06-Features/M1 - Acceso y cuenta.md",
+      "x": -1080,
+      "y": 830,
+      "width": 280,
+      "height": 90,
+      "color": "#E74C3C"
+    },
+    {
+      "id": "mM2",
+      "type": "file",
+      "file": "06-Features/M2 - Navegación y estructura.md",
+      "x": -780,
+      "y": 830,
+      "width": 280,
+      "height": 90,
+      "color": "#E74C3C"
+    },
+    {
+      "id": "mM3",
+      "type": "file",
+      "file": "06-Features/M3 - Monedas y tipo de cambio.md",
+      "x": -1080,
+      "y": 940,
+      "width": 280,
+      "height": 90,
+      "color": "#E74C3C"
+    },
+    {
+      "id": "mM4",
+      "type": "file",
+      "file": "06-Features/M4 - Cuentas.md",
+      "x": -780,
+      "y": 940,
+      "width": 280,
+      "height": 90,
+      "color": "#E74C3C"
+    },
+    {
+      "id": "mM5",
+      "type": "file",
+      "file": "06-Features/M5 - Categorías.md",
+      "x": -1080,
+      "y": 1050,
+      "width": 280,
+      "height": 90,
+      "color": "#E74C3C"
+    },
+    {
+      "id": "mM6",
+      "type": "file",
+      "file": "06-Features/M6 - Transacciones.md",
+      "x": -780,
+      "y": 1050,
+      "width": 280,
+      "height": 90,
+      "color": "#E74C3C"
+    },
+    {
+      "id": "mM7",
+      "type": "file",
+      "file": "06-Features/M7 - Registrar.md",
+      "x": -1080,
+      "y": 1160,
+      "width": 280,
+      "height": 90,
+      "color": "#E74C3C"
+    },
+    {
+      "id": "mM8",
+      "type": "file",
+      "file": "06-Features/M8 - Inicio (dashboard).md",
+      "x": -780,
+      "y": 1160,
+      "width": 280,
+      "height": 90,
+      "color": "#E74C3C"
+    },
+    {
+      "id": "mM9",
+      "type": "file",
+      "file": "06-Features/M9 - Ajustes y personalización.md",
+      "x": -1080,
+      "y": 1270,
+      "width": 280,
+      "height": 90,
+      "color": "#E74C3C"
+    },
+    {
+      "id": "mM10",
+      "type": "file",
+      "file": "06-Features/M10 - Onboarding.md",
+      "x": -780,
+      "y": 1270,
+      "width": 280,
+      "height": 90,
+      "color": "#E74C3C"
+    },
+    {
+      "id": "gV1.1",
+      "type": "group",
+      "label": "Entrega V1.1",
+      "x": -380,
+      "y": 800,
+      "width": 620,
+      "height": 260,
+      "color": "#E74C3C"
+    },
+    {
+      "id": "mM11",
+      "type": "file",
+      "file": "06-Features/M11 - Presupuestos.md",
+      "x": -360,
+      "y": 830,
+      "width": 280,
+      "height": 90,
+      "color": "#E74C3C"
+    },
+    {
+      "id": "mM12",
+      "type": "file",
+      "file": "06-Features/M12 - Metas de ahorro.md",
+      "x": -60,
+      "y": 830,
+      "width": 280,
+      "height": 90,
+      "color": "#E74C3C"
+    },
+    {
+      "id": "mM13",
+      "type": "file",
+      "file": "06-Features/M13 - Deudas y préstamos.md",
+      "x": -360,
+      "y": 940,
+      "width": 280,
+      "height": 90,
+      "color": "#E74C3C"
+    },
+    {
+      "id": "gV1.2",
+      "type": "group",
+      "label": "Entrega V1.2",
+      "x": 340,
+      "y": 800,
+      "width": 620,
+      "height": 150,
+      "color": "#E74C3C"
+    },
+    {
+      "id": "mM14",
+      "type": "file",
+      "file": "06-Features/M14 - Recurrentes.md",
+      "x": 360,
+      "y": 830,
+      "width": 280,
+      "height": 90,
+      "color": "#E74C3C"
+    },
+    {
+      "id": "mM15",
+      "type": "file",
+      "file": "06-Features/M15 - Recordatorios y avisos.md",
+      "x": 660,
+      "y": 830,
+      "width": 280,
+      "height": 90,
+      "color": "#E74C3C"
+    }
+  ],
+  "edges": [
+    {
+      "id": "e0",
+      "fromNode": "inicio",
+      "fromSide": "right",
+      "toNode": "moc0",
+      "toSide": "left"
+    },
+    {
+      "id": "e1",
+      "fromNode": "inicio",
+      "fromSide": "right",
+      "toNode": "moc1",
+      "toSide": "left"
+    },
+    {
+      "id": "e2",
+      "fromNode": "inicio",
+      "fromSide": "right",
+      "toNode": "moc2",
+      "toSide": "left"
+    },
+    {
+      "id": "e3",
+      "fromNode": "inicio",
+      "fromSide": "right",
+      "toNode": "moc3",
+      "toSide": "left"
+    },
+    {
+      "id": "e4",
+      "fromNode": "inicio",
+      "fromSide": "right",
+      "toNode": "moc4",
+      "toSide": "left"
+    },
+    {
+      "id": "e5",
+      "fromNode": "inicio",
+      "fromSide": "right",
+      "toNode": "moc5",
+      "toSide": "left"
+    },
+    {
+      "id": "e6",
+      "fromNode": "inicio",
+      "fromSide": "right",
+      "toNode": "moc6",
+      "toSide": "left"
+    },
+    {
+      "id": "e7",
+      "fromNode": "inicio",
+      "fromSide": "right",
+      "toNode": "moc7",
+      "toSide": "left"
+    },
+    {
+      "id": "e8",
+      "fromNode": "inicio",
+      "fromSide": "right",
+      "toNode": "moc8",
+      "toSide": "left"
+    }
+  ]
+}

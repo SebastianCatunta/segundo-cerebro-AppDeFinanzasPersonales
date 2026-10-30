@@ -1,0 +1,39 @@
+---
+tipo: "configuracion"
+fuente: ".env.example"
+tags:
+  - "config"
+actualizado: "2026-10-30"
+---
+
+# `.env.example`
+
+Plantilla de variables de entorno (sin valores reales). El archivo `.env` real NO se documenta aquí porque contiene secretos. Ver [[Variables de entorno]].
+
+## Contenido
+
+```text
+# API
+# development | test | production
+NODE_ENV=development
+PORT=3000
+DATABASE_URL=postgresql://USER:PASSWORD@localhost:5432/finanzas_dev
+DATABASE_URL_DIRECT=postgresql://USER:PASSWORD@localhost:5432/finanzas_dev
+AUTH_SECRET=
+HMAC_SECRET=
+JOBS_SECRET=
+RESEND_API_KEY=
+# Optional. Sender on a domain verified in Resend; unset = onboarding@resend.dev (only reaches the Resend account owner)
+# EMAIL_FROM="Finanzas <no-reply@appfinanzas.me>"
+RELEASE=
+WEB_ORIGIN=http://localhost:5173
+# real | fake (fake is forbidden in production)
+INTEGRATIONS=fake
+
+# Tests
+TEST_DATABASE_URL=postgresql://USER:PASSWORD@localhost:5432/finanzas_test
+# Optional, for slow machines: per-test limit in ms (hooks get twice as much). Unset = 5000.
+# TEST_TIMEOUT_MS=20000
+# Optional, tests only: artificial latency in ms added to each DB query. Unset = 0.
+# DB_LATENCY_MS=0
+```

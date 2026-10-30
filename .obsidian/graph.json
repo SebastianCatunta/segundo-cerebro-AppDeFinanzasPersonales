@@ -1,0 +1,93 @@
+{
+  "collapse-filter": true,
+  "search": "-file:CLAUDE",
+  "showTags": false,
+  "showAttachments": false,
+  "hideUnresolved": false,
+  "showOrphans": true,
+  "collapse-color-groups": false,
+  "colorGroups": [
+    {
+      "query": "path:\"00-Inicio\"",
+      "color": {
+        "a": 1,
+        "rgb": 16106818
+      }
+    },
+    {
+      "query": "path:\"01-Especificacion\"",
+      "color": {
+        "a": 1,
+        "rgb": 4886754
+      }
+    },
+    {
+      "query": "path:\"02-Arquitectura\"",
+      "color": {
+        "a": 1,
+        "rgb": 10181046
+      }
+    },
+    {
+      "query": "path:\"03-Backend\"",
+      "color": {
+        "a": 1,
+        "rgb": 2600544
+      }
+    },
+    {
+      "query": "path:\"04-Frontend\"",
+      "color": {
+        "a": 1,
+        "rgb": 15105570
+      }
+    },
+    {
+      "query": "path:\"05-Datos\"",
+      "color": {
+        "a": 1,
+        "rgb": 1482885
+      }
+    },
+    {
+      "query": "path:\"06-Features\"",
+      "color": {
+        "a": 1,
+        "rgb": 15158332
+      }
+    },
+    {
+      "query": "path:\"07-Testing-QA\"",
+      "color": {
+        "a": 1,
+        "rgb": 16740277
+      }
+    },
+    {
+      "query": "path:\"08-DevOps\"",
+      "color": {
+        "a": 1,
+        "rgb": 10506797
+      }
+    },
+    {
+      "query": "path:\"09-Proceso-IA\"",
+      "color": {
+        "a": 1,
+        "rgb": 10741301
+      }
+    }
+  ],
+  "collapse-display": true,
+  "showArrow": false,
+  "textFadeMultiplier": 0,
+  "nodeSizeMultiplier": 1,
+  "lineSizeMultiplier": 1,
+  "collapse-forces": true,
+  "centerStrength": 0.518713248970312,
+  "repelStrength": 10,
+  "linkStrength": 1,
+  "linkDistance": 250,
+  "scale": 0.2724833971123504,
+  "close": true
+}

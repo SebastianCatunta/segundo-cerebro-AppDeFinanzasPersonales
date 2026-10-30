@@ -1,0 +1,174 @@
+{
+  "items": [
+    {
+      "type": "file",
+      "ctime": 1793362187445,
+      "path": "00-Inicio/Inicio.md",
+      "title": "🧠 Inicio"
+    },
+    {
+      "type": "file",
+      "ctime": 1793362187445,
+      "path": "00-Inicio/Mapa del proyecto.canvas",
+      "title": "🧭 Mapa del proyecto"
+    },
+    {
+      "type": "group",
+      "ctime": 1793362187445,
+      "title": "Mapas (MOC)",
+      "items": [
+        {
+          "type": "file",
+          "ctime": 1793362187445,
+          "path": "00-Inicio/MOC Especificación.md",
+          "title": "📘 Especificación (SDD)"
+        },
+        {
+          "type": "file",
+          "ctime": 1793362187445,
+          "path": "00-Inicio/MOC Arquitectura.md",
+          "title": "🏛️ Arquitectura"
+        },
+        {
+          "type": "file",
+          "ctime": 1793362187445,
+          "path": "00-Inicio/MOC Backend.md",
+          "title": "⚙️ Backend (apps/api)"
+        },
+        {
+          "type": "file",
+          "ctime": 1793362187445,
+          "path": "00-Inicio/MOC Frontend.md",
+          "title": "🖥️ Frontend (apps/web)"
+        },
+        {
+          "type": "file",
+          "ctime": 1793362187445,
+          "path": "00-Inicio/MOC Datos.md",
+          "title": "🗄️ Datos (packages/db)"
+        },
+        {
+          "type": "file",
+          "ctime": 1793362187445,
+          "path": "00-Inicio/MOC Features.md",
+          "title": "🧭 Features (módulos M1–M15)"
+        },
+        {
+          "type": "file",
+          "ctime": 1793362187445,
+          "path": "00-Inicio/MOC Testing.md",
+          "title": "🧪 Testing y QA"
+        },
+        {
+          "type": "file",
+          "ctime": 1793362187445,
+          "path": "00-Inicio/MOC DevOps.md",
+          "title": "🚀 DevOps"
+        },
+        {
+          "type": "file",
+          "ctime": 1793362187445,
+          "path": "00-Inicio/MOC Proceso IA.md",
+          "title": "🤖 Proceso con agentes de IA"
+        }
+      ]
+    },
+    {
+      "type": "group",
+      "ctime": 1793362187445,
+      "title": "Módulos",
+      "items": [
+        {
+          "type": "file",
+          "ctime": 1793362187445,
+          "path": "06-Features/M1 - Acceso y cuenta.md",
+          "title": "M1 - Acceso y cuenta"
+        },
+        {
+          "type": "file",
+          "ctime": 1793362187445,
+          "path": "06-Features/M2 - Navegación y estructura.md",
+          "title": "M2 - Navegación y estructura"
+        },
+        {
+          "type": "file",
+          "ctime": 1793362187445,
+          "path": "06-Features/M3 - Monedas y tipo de cambio.md",
+          "title": "M3 - Monedas y tipo de cambio"
+        },
+        {
+          "type": "file",
+          "ctime": 1793362187445,
+          "path": "06-Features/M4 - Cuentas.md",
+          "title": "M4 - Cuentas"
+        },
+        {
+          "type": "file",
+          "ctime": 1793362187445,
+          "path": "06-Features/M5 - Categorías.md",
+          "title": "M5 - Categorías"
+        },
+        {
+          "type": "file",
+          "ctime": 1793362187445,
+          "path": "06-Features/M6 - Transacciones.md",
+          "title": "M6 - Transacciones"
+        },
+        {
+          "type": "file",
+          "ctime": 1793362187445,
+          "path": "06-Features/M7 - Registrar.md",
+          "title": "M7 - Registrar"
+        },
+        {
+          "type": "file",
+          "ctime": 1793362187445,
+          "path": "06-Features/M8 - Inicio (dashboard).md",
+          "title": "M8 - Inicio (dashboard)"
+        },
+        {
+          "type": "file",
+          "ctime": 1793362187445,
+          "path": "06-Features/M9 - Ajustes y personalización.md",
+          "title": "M9 - Ajustes y personalización"
+        },
+        {
+          "type": "file",
+          "ctime": 1793362187445,
+          "path": "06-Features/M10 - Onboarding.md",
+          "title": "M10 - Onboarding"
+        },
+        {
+          "type": "file",
+          "ctime": 1793362187445,
+          "path": "06-Features/M11 - Presupuestos.md",
+          "title": "M11 - Presupuestos"
+        },
+        {
+          "type": "file",
+          "ctime": 1793362187445,
+          "path": "06-Features/M12 - Metas de ahorro.md",
+          "title": "M12 - Metas de ahorro"
+        },
+        {
+          "type": "file",
+          "ctime": 1793362187445,
+          "path": "06-Features/M13 - Deudas y préstamos.md",
+          "title": "M13 - Deudas y préstamos"
+        },
+        {
+          "type": "file",
+          "ctime": 1793362187445,
+          "path": "06-Features/M14 - Recurrentes.md",
+          "title": "M14 - Recurrentes"
+        },
+        {
+          "type": "file",
+          "ctime": 1793362187445,
+          "path": "06-Features/M15 - Recordatorios y avisos.md",
+          "title": "M15 - Recordatorios y avisos"
+        }
+      ]
+    }
+  ]
+}
